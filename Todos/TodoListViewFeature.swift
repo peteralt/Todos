@@ -1,5 +1,6 @@
 import IdentifiedCollections
 import Combine
+import Tagged
 
 @MainActor
 final class TodosListModel: ObservableObject {
@@ -47,7 +48,7 @@ final class TodosListModel: ObservableObject {
 }
 
 struct Todo: Equatable, Identifiable, Codable, Hashable {
-    var id: UUID
+    var id: Tagged<Self, UUID>
     var text: String
     var isCompleted: Bool
     var dateAdded: Date

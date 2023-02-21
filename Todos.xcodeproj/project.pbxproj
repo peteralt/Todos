@@ -16,6 +16,7 @@
 		8A5428F029A56B390003482D /* TodosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428EF29A56B390003482D /* TodosUITestsLaunchTests.swift */; };
 		8A5428FD29A56B520003482D /* TodoListViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428FC29A56B520003482D /* TodoListViewFeature.swift */; };
 		8A54290029A570960003482D /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 8A5428FF29A570960003482D /* IdentifiedCollections */; };
+		8A54290329A574B40003482D /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 8A54290229A574B40003482D /* Tagged */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A54290329A574B40003482D /* Tagged in Frameworks */,
 				8A54290029A570960003482D /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +152,7 @@
 			name = Todos;
 			packageProductDependencies = (
 				8A5428FF29A570960003482D /* IdentifiedCollections */,
+				8A54290229A574B40003482D /* Tagged */,
 			);
 			productName = Todos;
 			productReference = 8A5428CF29A56B390003482D /* Todos.app */;
@@ -225,6 +228,7 @@
 			mainGroup = 8A5428C629A56B380003482D;
 			packageReferences = (
 				8A5428FE29A570960003482D /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
+				8A54290129A574B40003482D /* XCRemoteSwiftPackageReference "swift-tagged" */,
 			);
 			productRefGroup = 8A5428D029A56B390003482D /* Products */;
 			projectDirPath = "";
@@ -599,6 +603,14 @@
 				minimumVersion = 0.7.0;
 			};
 		};
+		8A54290129A574B40003482D /* XCRemoteSwiftPackageReference "swift-tagged" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "http://github.com/pointfreeco/swift-tagged";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -606,6 +618,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8A5428FE29A570960003482D /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
 			productName = IdentifiedCollections;
+		};
+		8A54290229A574B40003482D /* Tagged */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A54290129A574B40003482D /* XCRemoteSwiftPackageReference "swift-tagged" */;
+			productName = Tagged;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
