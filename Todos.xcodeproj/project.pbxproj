@@ -14,6 +14,8 @@
 		8A5428E429A56B390003482D /* TodosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428E329A56B390003482D /* TodosTests.swift */; };
 		8A5428EE29A56B390003482D /* TodosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428ED29A56B390003482D /* TodosUITests.swift */; };
 		8A5428F029A56B390003482D /* TodosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428EF29A56B390003482D /* TodosUITestsLaunchTests.swift */; };
+		8A5428FD29A56B520003482D /* TodoListViewFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428FC29A56B520003482D /* TodoListViewFeature.swift */; };
+		8A54290029A570960003482D /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 8A5428FF29A570960003482D /* IdentifiedCollections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 		8A5428E929A56B390003482D /* TodosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5428ED29A56B390003482D /* TodosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITests.swift; sourceTree = "<group>"; };
 		8A5428EF29A56B390003482D /* TodosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8A5428FC29A56B520003482D /* TodoListViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A54290029A570960003482D /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +100,7 @@
 			children = (
 				8A5428D229A56B390003482D /* TodosApp.swift */,
 				8A5428D429A56B390003482D /* ContentView.swift */,
+				8A5428FC29A56B520003482D /* TodoListViewFeature.swift */,
 				8A5428D629A56B390003482D /* Assets.xcassets */,
 				8A5428D829A56B390003482D /* Preview Content */,
 			);
@@ -143,6 +148,9 @@
 			dependencies = (
 			);
 			name = Todos;
+			packageProductDependencies = (
+				8A5428FF29A570960003482D /* IdentifiedCollections */,
+			);
 			productName = Todos;
 			productReference = 8A5428CF29A56B390003482D /* Todos.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +223,9 @@
 				Base,
 			);
 			mainGroup = 8A5428C629A56B380003482D;
+			packageReferences = (
+				8A5428FE29A570960003482D /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
+			);
 			productRefGroup = 8A5428D029A56B390003482D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +270,7 @@
 			files = (
 				8A5428D529A56B390003482D /* ContentView.swift in Sources */,
 				8A5428D329A56B390003482D /* TodosApp.swift in Sources */,
+				8A5428FD29A56B520003482D /* TodoListViewFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +589,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A5428FE29A570960003482D /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "http://github.com/pointfreeco/swift-identified-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A5428FF29A570960003482D /* IdentifiedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A5428FE29A570960003482D /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
+			productName = IdentifiedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A5428C729A56B380003482D /* Project object */;
 }
