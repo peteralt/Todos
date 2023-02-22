@@ -17,6 +17,7 @@
 		8A4F2C2C29A5C8D40038E18B /* TodoListViewFeatureSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4F2C2B29A5C8D40038E18B /* TodoListViewFeatureSnapshotTests.swift */; };
 		8A4F2C2F29A5C8F20038E18B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8A4F2C2E29A5C8F20038E18B /* SnapshotTesting */; };
 		8A4F2C3529A5C9740038E18B /* __Snapshots__ in Resources */ = {isa = PBXBuildFile; fileRef = 8A4F2C3429A5C9740038E18B /* __Snapshots__ */; };
+		8A4F2C3729A5CAFF0038E18B /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 8A4F2C3629A5CAFF0038E18B /* readme.md */; };
 		8A5428D329A56B390003482D /* TodosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428D229A56B390003482D /* TodosApp.swift */; };
 		8A5428D529A56B390003482D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5428D429A56B390003482D /* ContentView.swift */; };
 		8A5428D729A56B390003482D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A5428D629A56B390003482D /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		8A4F2C2929A5C6D30038E18B /* TodoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListModel.swift; sourceTree = "<group>"; };
 		8A4F2C2B29A5C8D40038E18B /* TodoListViewFeatureSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewFeatureSnapshotTests.swift; sourceTree = "<group>"; };
 		8A4F2C3429A5C9740038E18B /* __Snapshots__ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __Snapshots__; sourceTree = "<group>"; };
+		8A4F2C3629A5CAFF0038E18B /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		8A5428CF29A56B390003482D /* Todos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5428D229A56B390003482D /* TodosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApp.swift; sourceTree = "<group>"; };
 		8A5428D429A56B390003482D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		8A5428C629A56B380003482D = {
 			isa = PBXGroup;
 			children = (
+				8A4F2C3629A5CAFF0038E18B /* readme.md */,
 				8A5428D129A56B390003482D /* Todos */,
 				8A5428E229A56B390003482D /* TodosTests */,
 				8A5428D029A56B390003482D /* Products */,
@@ -264,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A4F2C3729A5CAFF0038E18B /* readme.md in Resources */,
 				8A4F2C3529A5C9740038E18B /* __Snapshots__ in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -411,7 +415,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
