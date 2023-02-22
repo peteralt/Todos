@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TodoListViewFeature(model: .init(todos: []))
+        TodoListViewFeature(
+            model: .init(
+                todos: [],
+                storageClient: InMemoryStorageClient()
+            )
+        )
     }
 }
 

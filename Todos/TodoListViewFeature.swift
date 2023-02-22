@@ -2,6 +2,34 @@ import IdentifiedCollections
 import Combine
 import Tagged
 
+protocol StorageClient {
+    func load() -> IdentifiedArrayOf<Todo>
+    func save(_ todos: IdentifiedArrayOf<Todo>) -> Void
+}
+
+final class InMemoryStorageClient: StorageClient {
+    var todos: IdentifiedArrayOf<Todo> = [
+        .init(
+            id: .init(),
+            text: "Hello World",
+            isCompleted: false,
+            dateAdded: .now
+        ),
+        .init(
+            id: .init(),
+            text: "Hello World, yesterday",
+            isCompleted: true,
+            dateAdded: .now
+        )
+    ]
+    func load() -> IdentifiedArrayOf<Todo> {
+        todos
+    }
+    func save(_ todos: IdentifiedArrayOf<Todo>) -> Void {
+        self.todos = todos
+    }
+}
+
 @MainActor
 final class TodosListModel: ObservableObject {
     @Published
@@ -10,8 +38,15 @@ final class TodosListModel: ObservableObject {
     @Published
     var canAddTodos: Bool = true
     
-    init(todos: IdentifiedArrayOf<Todo>) {
+    var storageClient: StorageClient
+    
+    private var cancellables: [AnyCancellable] = []
+    
+    init(todos: IdentifiedArrayOf<Todo>, storageClient: StorageClient) {
         self.todos = todos
+        self.storageClient = storageClient
+        self.todos = storageClient.load()
+        self.bind()
     }
     
     func addTodoButtonTapped() {
@@ -39,7 +74,12 @@ final class TodosListModel: ObservableObject {
     }
     
     private func bind() {
-        
+        $todos
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { todos in
+                self.storageClient.save(todos)
+            })
+            .store(in: &cancellables)
     }
 }
 
@@ -171,7 +211,8 @@ struct TodoListViewFeature_Previews: PreviewProvider {
                         isCompleted: true,
                         dateAdded: .now
                     )
-                ]
+                ],
+                storageClient: InMemoryStorageClient()
             )
         )
         .previewDisplayName("Light Mode")
@@ -191,7 +232,8 @@ struct TodoListViewFeature_Previews: PreviewProvider {
                         isCompleted: true,
                         dateAdded: .now
                     )
-                ]
+                ],
+                storageClient: InMemoryStorageClient()
             )
         )
         .previewDisplayName("Dark Mode")
