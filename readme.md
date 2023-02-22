@@ -24,3 +24,6 @@ The decision for UserDefaults was made because it's lightweight data currently a
 Further, some tests have been added, mainly to demonstrate how we can test our viewModel as well as the view itself using snapshot tests. Not all properties have been properly injected, mainly around UUIDs for example as well as dates.
 
 The app supports dark more in a basic fashion, previews have been added.
+
+> A Paragraph of freeform text
+This wasn't clearly defined as an input field that requires multi-line text input. Due to the nature of `TextEditor` and its hard to control behavior, I opted to use `TextField` instead, allowing only a single line of text entry at the time. If more time would be allotted to the feature, I would opt to wrap a `UITextView` in a `UIViewRepresentable`. In my experience this is far from ideal, but still a better solution than utilizing `TextEditor`.
