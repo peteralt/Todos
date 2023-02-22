@@ -7,6 +7,23 @@ protocol StorageClient {
     func save(_ todos: IdentifiedArrayOf<Todo>) -> Void
 }
 
+final class UserDefaultsStorageClient: StorageClient {
+    func load() -> IdentifiedArrayOf<Todo> {
+        var todos: IdentifiedArrayOf<Todo> = []
+        if let data = UserDefaults.standard.value(forKey: "todos") as? Data, let decodedTodos = try? JSONDecoder().decode(IdentifiedArrayOf<Todo>.self, from: data) {
+            todos = decodedTodos
+            
+        }
+        return todos
+    }
+    
+    func save(_ todos: IdentifiedArrayOf<Todo>) {
+        if let data = try? JSONEncoder().encode(todos) {
+            UserDefaults.standard.set(data, forKey: "todos")
+        }
+    }
+}
+
 final class InMemoryStorageClient: StorageClient {
     var todos: IdentifiedArrayOf<Todo> = [
         .init(
@@ -76,6 +93,7 @@ final class TodosListModel: ObservableObject {
     private func bind() {
         $todos
             .receive(on: DispatchQueue.main)
+            .removeDuplicates()
             .sink(receiveValue: { todos in
                 self.storageClient.save(todos)
             })
@@ -126,6 +144,9 @@ struct TodoView: View {
             TextField("", text: $todo.text)
                 .focused($isFocused)
                 .foregroundColor(titleColor)
+                .onSubmit {
+                    isFocused = false
+                }
             Spacer()
         }
         .onAppear {

@@ -12,7 +12,7 @@ struct ContentView: View {
         TodoListViewFeature(
             model: .init(
                 todos: [],
-                storageClient: InMemoryStorageClient()
+                storageClient: UserDefaultsStorageClient()
             )
         )
     }
