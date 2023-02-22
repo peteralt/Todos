@@ -5,12 +5,12 @@ import IdentifiedCollections
 @MainActor
 final class TodosListModel: ObservableObject {
     @Published
-    var todos: IdentifiedArrayOf<Todo>
+    private(set) var todos: IdentifiedArrayOf<Todo>
     
     @Published
-    var canAddTodos: Bool = true
+    private(set) var canAddTodos: Bool = true
     
-    var storageClient: StorageClient
+    private let storageClient: StorageClient
     
     private var cancellables: [AnyCancellable] = []
     
