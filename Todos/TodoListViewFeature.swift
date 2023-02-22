@@ -29,9 +29,13 @@ final class TodosListModel: ObservableObject {
         canAddTodos = false
     }
     
-    func didUpdateTodo(todo: Todo) {
+    func didUpdateTodo(_ todo: Todo) {
         self.todos[id: todo.id] = todo
         canAddTodos = todo.text != ""
+    }
+    
+    func didDeleteTodo(_ offset: IndexSet) {
+        self.todos.remove(atOffsets: offset)
     }
     
     private func bind() {
@@ -55,6 +59,14 @@ struct TodoView: View {
     @FocusState
     private var isFocused: Bool
     
+    var titleColor: Color {
+        if todo.isCompleted {
+            return Color.red
+        } else {
+            return Color(UIColor.label)
+        }
+    }
+    
     var icon: Image {
         if todo.isCompleted {
             return Image(systemName: "checkmark.circle.fill")
@@ -69,13 +81,19 @@ struct TodoView: View {
                 todo.isCompleted.toggle()
             }) {
                 icon
+                    .foregroundColor(titleColor)
             }
             TextField("", text: $todo.text)
                 .focused($isFocused)
+                .foregroundColor(titleColor)
             Spacer()
         }
         .onAppear {
-            isFocused = true
+            // we only want to assign focus when adding
+            // a new todo, not generally for the last item.
+            if todo.text == "" {
+                isFocused = true
+            }
         }
     }
 }
@@ -89,22 +107,34 @@ struct TodoListViewFeature: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(model.todos) { todoItem in
-                    TodoView(
-                        todo: Binding(
-                            get: { todoItem },
-                            set: { value in
-                                model.didUpdateTodo(todo: value)
-                            }
-                        )
-                    )
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 4)
+            ZStack {
+                if model.todos.isEmpty {
+                    VStack {
+                        Text("No Todos yet.")
+                        Text("Try it out and add one.")
+                    }
+                } else {
+                    List {
+                        
+                        ForEach(model.todos) { todoItem in
+                            TodoView(
+                                todo: Binding(
+                                    get: { todoItem },
+                                    set: { value in
+                                        model.didUpdateTodo(value)
+                                    }
+                                )
+                            )
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 4)
+                        }
+                        .onDelete { offset in
+                            model.didDeleteTodo(offset)
+                            
+                        }
+                    }
                 }
-            }
-            .navigationTitle("Todos")
-            .overlay {
+                
                 VStack {
                     Spacer()
                     HStack {
@@ -119,6 +149,7 @@ struct TodoListViewFeature: View {
                 }
                 .padding(.horizontal, 24)
             }
+            .navigationTitle("Todos")
         }
     }
 }
