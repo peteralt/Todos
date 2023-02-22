@@ -34,14 +34,6 @@ final class TodosListModel: ObservableObject {
         canAddTodos = todo.text != ""
     }
     
-    func todoTapped() {
-        
-    }
-    
-    func toggleTodoState() {
-        
-    }
-    
     private func bind() {
         
     }
@@ -60,6 +52,9 @@ struct TodoView: View {
     @Binding
     var todo: Todo
     
+    @FocusState
+    private var isFocused: Bool
+    
     var icon: Image {
         if todo.isCompleted {
             return Image(systemName: "checkmark.circle.fill")
@@ -70,9 +65,17 @@ struct TodoView: View {
     
     var body: some View {
         HStack {
-            icon
+            Button(action: {
+                todo.isCompleted.toggle()
+            }) {
+                icon
+            }
             TextField("", text: $todo.text)
+                .focused($isFocused)
             Spacer()
+        }
+        .onAppear {
+            isFocused = true
         }
     }
 }
@@ -81,13 +84,16 @@ struct TodoListViewFeature: View {
     @ObservedObject
     var model: TodosListModel
     
+    @FocusState
+    private var focusedField: Todo?
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(model.todos) { todo in
+                ForEach(model.todos) { todoItem in
                     TodoView(
                         todo: Binding(
-                            get: { todo },
+                            get: { todoItem },
                             set: { value in
                                 model.didUpdateTodo(todo: value)
                             }
