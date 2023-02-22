@@ -174,5 +174,27 @@ struct TodoListViewFeature_Previews: PreviewProvider {
                 ]
             )
         )
+        .previewDisplayName("Light Mode")
+        
+        TodoListViewFeature(
+            model: .init(
+                todos: [
+                    .init(
+                        id: .init(),
+                        text: "Hello World",
+                        isCompleted: false,
+                        dateAdded: .now
+                    ),
+                    .init(
+                        id: .init(),
+                        text: "Hello World, yesterday",
+                        isCompleted: true,
+                        dateAdded: .now
+                    )
+                ]
+            )
+        )
+        .previewDisplayName("Dark Mode")
+        .preferredColorScheme(.dark)
     }
 }
